@@ -1,0 +1,5 @@
+c:\users\bhaswatik\documents\visual studio 2012\Projects\bkweb01\bkweb01\bin\bkweb01.dll
+c:\users\bhaswatik\documents\visual studio 2012\Projects\bkweb01\bkweb01\bin\bkweb01.pdb
+c:\users\bhaswatik\documents\visual studio 2012\Projects\bkweb01\bkweb01\obj\Debug\bkweb01.csprojResolveAssemblyReference.cache
+c:\users\bhaswatik\documents\visual studio 2012\Projects\bkweb01\bkweb01\obj\Debug\bkweb01.dll
+c:\users\bhaswatik\documents\visual studio 2012\Projects\bkweb01\bkweb01\obj\Debug\bkweb01.pdb
