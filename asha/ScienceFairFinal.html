@@ -1,0 +1,775 @@
+<!DOCTYPE html!>
+<html>
+	<head>
+		<title>Home</title>
+		<script type="text/javascript">
+		function DisplayInstructions(shape)
+		{
+			var thisShape = shape;
+			document.getElementById("shapes").style.display = 'none';	
+			document.getElementById("heading").style.display = 'none';	
+			document.getElementById("subheading").style.display = 'none';				
+			document.getElementById("btnBack").style.display = 'block';	
+						
+					
+			if (thisShape == 'Rectangle')
+			{
+				document.getElementById("RectangleDiv").style.display = 'block';
+				document.getElementById("LengthBox").focus();
+			}
+			if (thisShape == 'Circle')
+			{
+				document.getElementById("CircleDiv").style.display = 'block';
+				document.getElementById("Radiusbox").focus();
+			}
+			if (thisShape == 'Triangle')
+			{
+				document.getElementById("TriangleDiv").style.display = 'block';
+				document.getElementById("ABox").focus();
+			}
+			if (thisShape == 'Square')
+			{
+				document.getElementById("SquareDiv").style.display = 'block';
+				document.getElementById("SideLengthBox").focus();
+			}
+			if (thisShape == 'Pentagon')
+			{
+				document.getElementById("PentagonDiv").style.display = 'block';	
+				document.getElementById("PSideLengthBox").focus();
+			}
+			if (thisShape == 'Hexagon')
+			{
+				document.getElementById("HexagonDiv").style.display = 'block';
+				document.getElementById("HSideLengthBox").focus();				
+			}
+		}
+		function Answer(theShape)
+		{
+			var shape = theShape;
+			
+			
+			//Rectangle
+			if (shape == 'Rectangle')
+			{
+				document.getElementById("lblPerimeterRA").style.display = 'none';
+				document.getElementById("lblAreaRA").style.display = 'none';
+				document.getElementById("lblPerimeterR").style.display = 'none';
+				document.getElementById("lblAreaR").style.display = 'none';	
+				var l = lengthbox.value;
+				var w = widthbox.value;
+				var length = l.trim();
+				var width = w.trim();
+				
+				if ( length.length == 0 || width.length == 0 ) 
+				{
+					document.getElementById("RlblError").style.display = 'block';
+					document.getElementById("RlblError").innerHTML="Please enter the length and width of the rectangle";
+				}
+				else
+				{
+						if ( length.search("-") != -1 || width.search("-") != -1 )
+						{	
+							document.getElementById("RlblError").style.display = 'block';
+							document.getElementById("RlblError").innerHTML="Please remove any negative numbers";
+						
+						}
+						else
+						{
+							if ( isNaN(length) == true || isNaN(width) == true )
+							{
+								document.getElementById("RlblError").style.display = 'block';
+								document.getElementById("RlblError").innerHTML="Please enter a numerical value";
+							}
+							else
+							{	
+								if ( length == 0 || width == 0 ) 
+								{
+									document.getElementById("RlblError").style.display = 'block';
+									document.getElementById("RlblError").innerHTML="0 cannot be a side length";
+								}
+								else
+								{
+									document.getElementById("RlblError").style.display = 'none';
+									document.getElementById("lblAreaR").style.display = 'block';
+									document.getElementById("lblPerimeterR").style.display = 'block';
+									document.getElementById("lblAreaRA").style.display = 'block';
+									document.getElementById("lblPerimeterRA").style.display = 'block';
+									var Length = document.getElementById("lengthbox").value;
+									var Width = document.getElementById("widthbox").value;
+									var RectanglePerimeter = 2*Width + 2*Length;
+									var RectangleArea = Width * Length;
+									document.getElementById("lblPerimeterRA").innerHTML = RectanglePerimeter;
+									document.getElementById("lblAreaRA").innerHTML = RectangleArea;	
+								}
+						
+							}
+							
+					
+						}
+				
+				}
+			}
+			//Square
+			else if ( shape == 'Square')
+			{	
+			
+				document.getElementById("lblPerimeterSA").style.display = 'none';
+				document.getElementById("lblAreaSA").style.display = 'none';
+				document.getElementById("lblPerimeterS").style.display = 'none';
+				document.getElementById("lblAreaS").style.display = 'none';					
+				var slv = document.getElementById("SideLengthBox").value;
+				var sl = slv.trim();
+			
+			
+				
+				if ( sl.length == 0 ) 
+				{
+					
+					document.getElementById("SlblError").style.display = 'block';
+					document.getElementById("SlblError").innerHTML="Please enter the side length of the square";
+				}
+				else
+				{
+						if ( sl.search("-") != -1 )
+						{	
+							
+							document.getElementById("SlblError").style.display = 'block';
+							document.getElementById("SlblError").innerHTML="Please remove any negative numbers";
+						
+						}
+						else
+						{
+							if ( isNaN(sl) == true )
+							{
+								document.getElementById("SlblError").style.display = 'block';
+								document.getElementById("SlblError").innerHTML="Please enter a numerical value";
+							}
+							else
+							{
+								if ( sl == 0 || sl == 0 ) 
+								{
+									document.getElementById("SlblError").style.display = 'block';
+									document.getElementById("SlblError").innerHTML="0 cannot be a side length";
+								}
+								else
+								{
+								
+									document.getElementById("SlblError").style.display = 'none';
+									var SquarePerimeter = 4*sl;
+									var SquareArea = sl * sl;
+									document.getElementById("lblPerimeterSA").style.display = 'block';
+									document.getElementById("lblAreaSA").style.display = 'block';
+									document.getElementById("lblPerimeterS").style.display = 'block';
+									document.getElementById("lblAreaS").style.display = 'block';
+									document.getElementById("lblPerimeterSA").innerHTML = SquarePerimeter;
+									document.getElementById("lblAreaSA").innerHTML = SquareArea;	
+								}
+							}	
+						}
+					
+				}
+			}
+			//Circle
+			else if ( shape == 'Circle')
+			{
+				document.getElementById("lblPerimeterCA").style.display = 'none';
+				document.getElementById("lblAreaCA").style.display = 'none';
+				document.getElementById("lblPerimeterC").style.display = 'none';
+				document.getElementById("lblAreaC").style.display = 'none';	
+				var rt = document.getElementById("Radiusbox").value;	
+				var r = rt.trim();
+								
+				if ( r.length == 0 ) 
+				{
+					
+					document.getElementById("ClblError").style.display = 'block';
+					document.getElementById("ClblError").innerHTML="Please enter the radius of the circle";
+				}
+				else
+				{
+						if ( r.search("-") != -1 )
+						{	
+							
+							document.getElementById("ClblError").style.display = 'block';
+							document.getElementById("ClblError").innerHTML="Please remove any negative numbers";
+						
+						}
+						else
+						{
+							if ( isNaN(r) == true )
+							{
+								document.getElementById("ClblError").style.display = 'block';
+								document.getElementById("ClblError").innerHTML="Please enter a numerical value";
+							}
+							else
+							{
+								if ( r == 0 || r == 0 ) 
+								{
+									document.getElementById("ClblError").style.display = 'block';
+									document.getElementById("ClblError").innerHTML="0 cannot be a side length";
+								}
+								else
+								{
+									document.getElementById("SlblError").style.display = 'none';
+									var SquarePerimeter = 2*r*3.14159;
+									var SquareArea = 3.14159*(r*r);
+									document.getElementById("lblPerimeterCA").style.display = 'block';
+									document.getElementById("lblAreaCA").style.display = 'block';
+									document.getElementById("lblPerimeterC").style.display = 'block';
+									document.getElementById("lblPerimeterC").innerHTML = "Circumference:";
+									document.getElementById("lblAreaC").style.display = 'block';
+									document.getElementById("lblPerimeterCA").innerHTML = SquarePerimeter;
+									document.getElementById("lblAreaCA").innerHTML = SquareArea;	
+								}
+							}
+						
+					}
+				}
+			}
+			//Triangle
+			else if ( shape == 'triangle')
+			{	
+				document.getElementById("lblPerimeterTA").style.display = 'none';
+				document.getElementById("lblAreaTA").style.display = 'none';
+				document.getElementById("lblPerimeterT").style.display = 'none';
+				document.getElementById("lblAreaT").style.display = 'none';	
+				
+				var side1v = document.getElementById("Abox").value;
+				var side2v = document.getElementById("Bbox").value;
+				var side3v = document.getElementById("Cbox").value;
+				var side1 = side1v.trim();
+				var side2 = side2v.trim();
+				var side3 = side3v.trim();
+				
+								
+				if ( side1.length == 0 || side2.length == 0 || side3.length == 0 ) 
+				{
+					
+					document.getElementById("TlblError").style.display = 'block';
+					document.getElementById("TlblError").innerHTML="Please enter the side lengths of the triangle";
+					
+				}
+				else
+				{
+					if ( isNaN(side1) == true || isNaN(side2) == true || isNaN(side3)== true )
+					{
+						document.getElementById("TlblError").style.display = 'block';
+						document.getElementById("TlblError").innerHTML="Please enter a numerical value";
+					}
+					else
+					{
+						if (side1.search("-") != -1 || side2.search("-") != -1 || side3.search("-") != -1)
+						{
+							document.getElementById("TlblError").style.display = 'block';
+							document.getElementById("TlblError").innerHTML="Please remove all negative numbers";
+						}
+						else
+						{
+								if ( side1 == 0 || side2 == 0 || side3 == 0) 
+								{
+									document.getElementById("TlblError").style.display = 'block';
+									document.getElementById("TlblError").innerHTML="0 cannot be a side length";
+								}
+								else
+								{
+									var TrianglePerimeter = parseFloat(side1) + parseFloat(side2) + parseFloat(side3);
+									var s = TrianglePerimeter / 2;
+									var TriangleArea = Math.sqrt(s*(s-side1)*(s-side2)*(s-side3));
+								
+									if (isNaN(TriangleArea) == true || TriangleArea == 0)
+									{
+										document.getElementById("TlblError").innerHTML="The measurements of these side lengths do not result in a triangle"
+									}
+									else
+									{
+										document.getElementById("lblPerimeterT").style.display ='block';
+										document.getElementById("lblAreaT").style.display ='block';
+										document.getElementById("lblPerimeterTA").style.display ='block';
+										document.getElementById("lblAreaTA").style.display ='block';
+										document.getElementById("TlblError").style.display = 'none';								
+										document.getElementById("lblPerimeterTA").innerHTML= TrianglePerimeter;
+										document.getElementById("lblAreaTA").innerHTML= TriangleArea;	
+									}
+								}
+								
+						}	
+					}
+					
+				}
+			}
+			//Pentagon
+			else if ( shape == 'Pentagon')
+			{	
+			
+				document.getElementById("lblPerimeterPA").style.display = 'none';
+				document.getElementById("lblAreaPA").style.display = 'none';
+				document.getElementById("lblPerimeterP").style.display = 'none';
+				document.getElementById("lblAreaP").style.display = 'none';				
+				var psv = document.getElementById("PSideLengthBox").value;
+				var ps = psv.trim();
+			
+			
+				
+				if ( ps.length == 0 ) 
+				{
+					
+					document.getElementById("PlblError").style.display = 'block';
+					document.getElementById("PlblError").innerHTML="Please enter the side length of the pentagon";
+				}
+				else
+				{
+						if ( ps.search("-") != -1 )
+						{	
+							
+							document.getElementById("PlblError").style.display = 'block';
+							document.getElementById("PlblError").innerHTML="Please remove any negative numbers";
+						
+						}
+						else
+						{
+							if ( isNaN(ps) == true )
+							{
+								document.getElementById("PlblError").style.display = 'block';
+								document.getElementById("PlblError").innerHTML="Please enter a numerical value";
+							}
+							else
+							{
+								if ( ps == 0 || ps == 0 ) 
+								{
+									document.getElementById("PlblError").style.display = 'block';
+									document.getElementById("PlblError").innerHTML="0 cannot be a side length";
+								}
+								else
+								{
+								
+									document.getElementById("PlblError").style.display = 'none';
+									var s = parseFloat(ps) / 2;
+									var a = s * 1.3763819204711735382072095819109;
+									var TArea = 0.5 * s * a;
+									var PArea = 10 * TArea;
+									var PPerimeter = 5 * parseFloat(ps);
+									document.getElementById("lblPerimeterPA").style.display = 'block';
+									document.getElementById("lblAreaPA").style.display = 'block';
+									document.getElementById("lblPerimeterP").style.display = 'block';
+									document.getElementById("lblAreaP").style.display = 'block';
+									document.getElementById("lblPerimeterPA").innerHTML = PPerimeter;
+									document.getElementById("lblAreaPA").innerHTML = PArea;	
+								}
+							}
+						}
+					
+				}
+			}
+			//Hexagon
+			else if ( shape == 'Hexagon')
+			{	
+				document.getElementById("lblPerimeterHA").style.display = 'none';
+				document.getElementById("lblAreaHA").style.display = 'none';
+				document.getElementById("lblPerimeterH").style.display = 'none';
+				document.getElementById("lblAreaH").style.display = 'none';
+								
+				var hsv = document.getElementById("HSideLengthBox").value;
+				var hs = hsv.trim();
+			
+			
+			
+				
+				if ( hs.length == 0 ) 
+				{
+					
+					document.getElementById("HlblError").style.display = 'block';
+					document.getElementById("HlblError").innerHTML="Please enter the side length of the hexagon";
+				}
+				else
+				{
+						if ( hs.search("-") != -1 )
+						{	
+							
+							document.getElementById("HlblError").style.display = 'block';
+							document.getElementById("HlblError").innerHTML="Please remove any negative numbers";
+						
+						}
+						else
+						{
+							if ( isNaN(hs) == true )
+							{
+								document.getElementById("HlblError").style.display = 'block';
+								document.getElementById("HlblError").innerHTML="Please enter a numerical value";
+							}
+							else
+							{
+								if ( hs == 0 || hs == 0 ) 
+								{
+									document.getElementById("RlblError").style.display = 'block';
+									document.getElementById("RlblError").innerHTML="0 cannot be a side length";
+								}
+								else
+								{
+									document.getElementById("HlblError").style.display = 'none';
+									var S = parseFloat(hs) * 1.5;
+									var TA = Math.sqrt(S*(S-hs)*(S-hs)*(S-hs));
+									var HPerimeter = 6 * hs;
+									var HArea = 6 * TA;
+									document.getElementById("lblPerimeterHA").style.display = 'block';
+									document.getElementById("lblAreaHA").style.display = 'block';
+									document.getElementById("lblPerimeterH").style.display = 'block';
+									document.getElementById("lblAreaH").style.display = 'block';
+									document.getElementById("lblPerimeterHA").innerHTML = HPerimeter;
+									document.getElementById("lblAreaHA").innerHTML = HArea;	
+								}
+							}
+						
+					}
+				}
+			}
+			else 
+			{
+				alert("Geometrical figure is not found");
+			}
+			
+		}
+		function ReturnHome()
+		{
+			document.getElementById("shapes").style.display = 'block';	
+			document.getElementById("heading").style.display = 'block';	
+			document.getElementById("subheading").style.display = 'block';	
+			document.getElementById("btnBack").style.display = 'none';	
+			document.getElementById("RectangleDiv").style.display = 'none';
+			document.getElementById("CircleDiv").style.display = 'none';
+			document.getElementById("PentagonDiv").style.display = 'none';
+			document.getElementById("HexagonDiv").style.display = 'none';
+			document.getElementById("TriangleDiv").style.display = 'none';
+			document.getElementById("SquareDiv").style.display = 'none';
+			document.getElementById("RlblError").style.display = 'none';
+			document.getElementById("TlblError").style.display = 'none';
+			document.getElementById("HlblError").style.display = 'none';
+			document.getElementById("PlblError").style.display = 'none';
+			document.getElementById("SlblError").style.display = 'none';
+			document.getElementById("ClblError").style.display = 'none';
+			document.getElementById("lblPerimeterR").style.display = 'none';
+			document.getElementById("lblPerimeterRA").style.display = 'none';
+			document.getElementById("lblAreaR").style.display = 'none';
+			document.getElementById("lblAreaRA").style.display = 'none';
+			document.getElementById("lblPerimeterR").style.display = 'none';
+			document.getElementById("lblAreaR").style.display = 'none';
+			document.getElementById("lblPerimeterRA").style.display = 'none';
+			document.getElementById("lblAreaRA").style.display = 'none';
+			document.getElementById("widthbox").value = '';
+			document.getElementById("lengthbox").value = '';
+			document.getElementById("lblPerimeterS").style.display = 'none';
+			document.getElementById("lblAreaS").style.display = 'none';
+			document.getElementById("lblPerimeterSA").style.display = 'none';
+			document.getElementById("lblAreaSA").style.display = 'none';
+			document.getElementById("SideLengthBox").value = '';
+			document.getElementById("lblPerimeterT").style.display = 'none';
+			document.getElementById("lblAreaT").style.display = 'none';
+			document.getElementById("lblPerimeterTA").style.display = 'none';
+			document.getElementById("lblAreaTA").style.display = 'none';
+			document.getElementById("Abox").value = '';
+			document.getElementById("Bbox").value = '';
+			document.getElementById("Cbox").value = '';
+			document.getElementById("PSideLengthBox").value = '';
+			document.getElementById("HSideLengthBox").value = '';
+			document.getElementById("Radiusbox").value = '';
+			document.getElementById("RlblError").style.display = 'none';
+			document.getElementById("PlblError").style.display = 'none';
+			document.getElementById("TlblError").style.display = 'none';
+			document.getElementById("HlblError").style.display = 'none';
+			document.getElementById("PlblError").style.display = 'none';
+			document.getElementById("SlblError").style.display = 'none';
+			document.getElementById("ClblError").style.display = 'none';
+			document.getElementById("lblPerimeterC").style.display = 'none';
+			document.getElementById("lblAreaC").style.display = 'none';
+			document.getElementById("lblPerimeterCA").style.display = 'none';
+			document.getElementById("lblAreaCA").style.display = 'none';
+			document.getElementById("lblPerimeterP").style.display = 'none';
+			document.getElementById("lblAreaP").style.display = 'none';
+			document.getElementById("lblPerimeterPA").style.display = 'none';
+			document.getElementById("lblAreaPA").style.display = 'none';
+			document.getElementById("lblPerimeterH").style.display = 'none';
+			document.getElementById("lblAreaH").style.display = 'none';
+			document.getElementById("lblPerimeterHA").style.display = 'none';
+			document.getElementById("lblAreaHA").style.display = 'none';
+		}
+		function Clear()
+		{
+			document.getElementById("lblPerimeterR").style.display = 'none';
+			document.getElementById("lblAreaR").style.display = 'none';
+			document.getElementById("lblPerimeterRA").style.display = 'none';
+			document.getElementById("lblAreaRA").style.display = 'none';
+			document.getElementById("widthbox").value = '';
+			document.getElementById("lengthbox").value = '';
+			document.getElementById("lblPerimeterS").style.display = 'none';
+			document.getElementById("lblAreaS").style.display = 'none';
+			document.getElementById("lblPerimeterSA").style.display = 'none';
+			document.getElementById("lblAreaSA").style.display = 'none';
+			document.getElementById("SideLengthBox").value = '';
+			document.getElementById("lblPerimeterT").style.display = 'none';
+			document.getElementById("lblAreaT").style.display = 'none';
+			document.getElementById("lblPerimeterTA").style.display = 'none';
+			document.getElementById("lblAreaTA").style.display = 'none';
+			document.getElementById("Abox").value = '';
+			document.getElementById("Bbox").value = '';
+			document.getElementById("Cbox").value = '';
+			document.getElementById("PSideLengthBox").value = '';
+			document.getElementById("HSideLengthBox").value = '';
+			document.getElementById("Radiusbox").value = '';
+			document.getElementById("RlblError").style.display = 'none';
+			document.getElementById("PlblError").style.display = 'none';
+			document.getElementById("TlblError").style.display = 'none';
+			document.getElementById("HlblError").style.display = 'none';
+			document.getElementById("PlblError").style.display = 'none';
+			document.getElementById("SlblError").style.display = 'none';
+			document.getElementById("ClblError").style.display = 'none';
+			document.getElementById("lblPerimeterC").style.display = 'none';
+			document.getElementById("lblAreaC").style.display = 'none';
+			document.getElementById("lblPerimeterCA").style.display = 'none';
+			document.getElementById("lblAreaCA").style.display = 'none';
+			document.getElementById("lblPerimeterP").style.display = 'none';
+			document.getElementById("lblAreaP").style.display = 'none';
+			document.getElementById("lblPerimeterPA").style.display = 'none';
+			document.getElementById("lblAreaPA").style.display = 'none';
+			document.getElementById("lblPerimeterH").style.display = 'none';
+			document.getElementById("lblAreaH").style.display = 'none';
+			document.getElementById("lblPerimeterHA").style.display = 'none';
+			document.getElementById("lblAreaHA").style.display = 'none';
+			
+		}
+		
+	</script>
+		<style>
+			body {
+				background-color:rgb(153, 204, 255);
+			}
+			h4 {
+				font-family: "Century Gothic";
+				font-weight: bold;
+			}
+			.shapes {
+				align: center;
+			}
+			h1 {
+				font-family: "Century Gothic";
+				font-weight: bold;
+			}
+			.writing {
+				font-family: "Century Gothic";
+				font-weight: bold;
+			}
+			.bigger {
+				font-size: 150%;
+			}
+			.red {
+				color: rgb(255,0,0);
+			}
+			
+			
+		</style>
+	</head>
+	<body>
+		<h1 align="center" id="heading" class="writing">Area and Perimeter Calculation</h1>
+		<h4 align="center" id="subheading" class="writing">Click on any of the shapes below to calculate its area and perimeter!</h4>
+		
+	<div id="shapes" align="center">
+		<input type="image" id="btnRectangle" src="Rectangle.PNG" alt="Rectangle" onclick="DisplayInstructions('Rectangle')">
+		<input type="image" id="btnTriangle" src="Triangle.PNG" alt="Triangle" onclick="DisplayInstructions('Triangle')">
+		<input type="image" id="btnPentagon" src="Pentagon.PNG" alt="Pentagon" onclick="DisplayInstructions('Pentagon')"><br>
+		<input type="image" id="btnHexagon" src="Hexagon.PNG" alt="Hexagon" onclick="DisplayInstructions('Hexagon')">
+		<input type="image" id="btnCircle" src="Circle.PNG" alt="Circle" onclick="DisplayInstructions('Circle')">
+		<input type="image" id="btnSquare" src="Square.PNG" alt="Square" onclick="DisplayInstructions('Square')">
+	</div>	
+		<input type="image" id="btnBack" src="Back.PNG" alt="Back to Home" onclick="ReturnHome()" width="40" height="40" align="top" style="display: none"> 
+					
+			<div id="RectangleDiv" style="display:none">				
+				
+			<table align="center">
+				<tr>
+					<td></td>
+					<td><h1 class="writing">Rectangle</h1></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><label id="RlblError" class="writing red" style="display: block;"></label></td>
+				</tr>
+				<tr>
+					<td><label id="lblEnterLength" class="writing bigger">Length:</label></td>
+					<td><input type="text" id="lengthbox" /><br></td>
+				</tr>
+				<tr>
+					<td><label id="lblEnterWidth" class="writing bigger">Width:</label></td>
+					<td><input type="text" id="widthbox"/><br></td>
+				</tr>
+				<tr>
+					<td><br/><input type="button" id="Clear" class="writing bigger" value="Clear" onclick="Clear('Rectangle')"></td>
+					<td><br/><input type="button" id="SubmitRectangle" class="writing bigger" value="Calculate Area and Perimeter" onclick="Answer('Rectangle')"></td>
+				</tr>
+				<tr>
+					<td><label id="lblPerimeterR" class="writing" style="display:none">Perimeter:</label></td>
+					<td><label id="lblPerimeterRA" class="writing"></label></td>
+				</tr><br>
+				<tr>
+					<td><label id="lblAreaR" class="writing" style="display:none">Area:</label></td>
+					<td><label id="lblAreaRA" class="writing"></label></td>
+				</tr>
+			</table>
+			
+			</div>
+			<div id="TriangleDiv" style="display:none">				
+				
+			<table align="center">
+				<tr>
+					<td></td>
+					<td><h1 class="writing">Triangle</h1></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><label id="TlblError" class="writing red" style="display: block;"></label></td>
+				</tr>
+				<tr>
+					<td><label id="lblA" class="writing bigger">Side A:</label></td>
+					<td><input type="text" id="Abox" /><br></td>
+				</tr>
+				<tr>
+					<td><label id="lblB" class="writing bigger">Side B:</label></td>
+					<td><input type="text" id="Bbox"/><br></td>
+				</tr>
+				<tr>
+					<td><label id="lblC" class="writing bigger">Side C:</label></td>
+					<td><input type="text" id="Cbox"/><br></td>
+				</tr>
+				<tr>
+					<td><br/><input type="button" id="Clear" class="writing bigger" value="Clear" onclick="Clear('Triangle')"></td>
+					<td><br/><input type="button" id="SubmitTriangle" class="writing bigger" value="Calculate Area and Perimeter" onclick="Answer('triangle')"></td>
+				</tr>
+				<tr>
+					<td><label id="lblPerimeterT" class="writing" style="display:none">Perimeter:</label></td>
+					<td><label id="lblPerimeterTA" class="writing"></label></td>
+				</tr><br>
+				<tr>
+					<td><label id="lblAreaT" class="writing" style="display:none">Area:</label></td>
+					<td><label id="lblAreaTA" class="writing"></label></td>
+				</tr>
+			</table>
+			
+		</div>
+		<div id="CircleDiv" style="display:none">
+			<table align="center">
+				<tr>
+					<td></td>
+					<td><h1 class="writing">Circle</h1></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><label id="ClblError" class="writing red" style="display: block;"></label></td>
+				</tr>
+				<tr>
+					<td><label id="lblRadius" class="writing bigger">Radius:</label></td>
+					<td><input type="text" id="Radiusbox" /><br></td>
+				</tr>
+				<tr>
+					<td><br/><input type="button" id="Clear" class="writing bigger" value="Clear" onclick="Clear('Circle')"></td>
+					<td><br/><input type="button" id="SubmitCircle" class="writing bigger" value="Calculate Area and Perimeter" onclick="Answer('Circle')"></td>
+				</tr>
+				<tr>
+					<td><label id="lblPerimeterC" class="writing" style="display:none">Perimeter:</label></td>
+					<td><label id="lblPerimeterCA" class="writing"></label></td>
+				</tr><br>
+				<tr>
+					<td><label id="lblAreaC" class="writing" style="display:none">Area:</label></td>
+					<td><label id="lblAreaCA" class="writing"></label></td>
+				</tr>
+			</table>
+		</div>
+		<div id="PentagonDiv" style="display:none">
+			<table align="center">
+				<tr>
+					<td></td>
+					<td><h1 class="writing">Pentagon</h1></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><label id="PlblError" class="writing red" style="display: block;"></label></td>
+				</tr>
+				<tr>
+					<td><label id="lblSideLength" class="writing bigger">Side Length:</label></td>
+					<td><input type="text" id="PSideLengthBox" /><br></td>
+				</tr>
+				<tr>
+					<td><br/><input type="button" id="Clear" class="writing bigger" value="Clear" onclick="Clear('Pentagon')"></td>
+					<td><br/><input type="button" id="SubmitPentagon" class="writing bigger" value="Calculate Area and Perimeter" onclick="Answer('Pentagon')"></td>
+				</tr>
+				<tr>
+					<td><label id="lblPerimeterP" class="writing" style="display:none">Perimeter:</label></td>
+					<td><label id="lblPerimeterPA" class="writing"></label></td>
+				</tr><br>
+				<tr>
+					<td><label id="lblAreaP" class="writing" style="display:none">Area:</label></td>
+					<td><label id="lblAreaPA" class="writing"></label></td>
+				</tr>
+			</table>
+		</div>
+		<div id="HexagonDiv" style="display:none">
+			<table align="center">
+				<tr>
+					<td></td>
+					<td><h1 class="writing">Hexagon</h1></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><label id="HlblError" class="writing red" style="display: block;"></label></td>
+				</tr>
+				<tr>
+					<td><label id="lblSideLength" class="writing bigger">Side Length:</label></td>
+					<td><input type="text" id="HSideLengthBox" /><br></td>
+				</tr>
+				<tr>
+					<td><br/><input type="button" id="Clear" class="writing bigger" value="Clear" onclick="Clear('Hexagon')"></td>
+					<td><br/><input type="button" id="SubmitHexagon" class="writing bigger" value="Calculate Area and Perimeter" onclick="Answer('Hexagon')"></td>
+				</tr>
+				<tr>
+					<td><label id="lblPerimeterH" class="writing" style="display:none">Perimeter:</label></td>
+					<td><label id="lblPerimeterHA" class="writing"></label></td>
+				</tr><br>
+				<tr>
+					<td><label id="lblAreaH" class="writing" style="display:none">Area:</label></td>
+					<td><label id="lblAreaHA" class="writing"></label></td>
+				</tr>
+			</table>
+		</div>
+		<div id="SquareDiv" style="display:none">
+			<table align="center">
+				<tr>
+					<td></td>
+					<td><h1 class="writing">Square</h1></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><label id="SlblError" class="writing red" style="display: block;"></label></td>
+				</tr>
+				<tr>
+					<td><label id="lblSideLength" class="writing bigger">Side Length:</label></td>
+					<td><input type="text" id="SideLengthBox" /><br></td>
+				</tr>
+				<tr>
+					<td><br/><input type="button" id="Clear" class="writing bigger" value="Clear" onclick="Clear('Square')"></td>
+					<td><br/><input type="button" id="SubmitSquare" class="writing bigger" value="Calculate Area and Perimeter" onclick="Answer('Square')"></td>
+				</tr>
+				<tr>
+					<td><label id="lblPerimeterS" class="writing" style="display:none">Perimeter:</label></td>
+					<td><label id="lblPerimeterSA" class="writing"></label></td>
+				</tr><br>
+				<tr>
+					<td><label id="lblAreaS" class="writing" style="display:none">Area:</label></td>
+					<td><label id="lblAreaSA" class="writing"></label></td>
+				</tr>
+			</table>
+		</div>
+			
+		
+	
+	</body>
+
+</html>
+
+
+
